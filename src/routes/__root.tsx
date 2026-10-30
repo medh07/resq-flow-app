@@ -13,6 +13,8 @@ import { AppShell } from "@/components/AppShell";
 import { Toaster } from "@/components/ui/sonner";
 import { useApp } from "@/lib/store";
 
+import { CitizenAuth } from "@/components/resq/Auth";
+
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -130,9 +132,9 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       {ready ? (
-        <AppShell>
+        <CitizenAuth><AppShell>
           <Outlet />
-        </AppShell>
+        </AppShell></CitizenAuth>
       ) : (
         <div className="grid min-h-screen place-items-center text-sm text-muted-foreground">Loading ResQ-Flow…</div>
       )}

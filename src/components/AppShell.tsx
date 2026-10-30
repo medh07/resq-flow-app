@@ -54,7 +54,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <SheetContent side="left" className="w-72 p-0">
           <SheetHeader className="bg-feature p-5 text-primary-foreground">
             <SheetTitle className="text-primary-foreground">ResQ-Flow</SheetTitle>
-            <p className="text-xs opacity-80">Flood response · demo mode</p>
+            <p className="text-xs opacity-80">Flood response · prototype</p>
           </SheetHeader>
           <nav className="p-2">
             {items.map((n) => (
@@ -66,6 +66,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </SheetContent>
       </Sheet>
 
+      <div className="mx-auto max-w-3xl border-b p-3 text-xs" role="status">{['/report', '/track', '/profile'].includes(path) ? 'Connected prototype: reports use Supabase. No official emergency-service dispatch.' : 'Demo preview: this page uses simulated local data. Use Send SOS and My Reports for connected reports.'}</div>
       <main>{children}</main>
 
       <button aria-label="Open assistant" onClick={() => setAi(true)} className="fixed bottom-20 right-4 z-40 grid h-14 w-14 place-items-center rounded-full bg-feature text-primary-foreground shadow-float">
@@ -98,7 +99,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 const ANSWERS: { k: RegExp; a: string; to?: string }[] = [
   { k: /missing|drift|search|swept/i, a: "Open Flood Search Intelligence to see plausible search sectors for a missing person. These are simulated estimates, never an exact location.", to: "/search" },
   { k: /shelter|stay|camp/i, a: "Shelters & Medical lists capacity and free spaces. Entries older than 6 h are flagged as stale.", to: "/shelters" },
-  { k: /report|sos|help|emergency/i, a: "Use Report an Emergency / Send SOS. If life is at risk, also call 112 directly — this demo app does not deliver alerts to authorities.", to: "/report" },
+  { k: /report|sos|help|emergency/i, a: "Use Report an Emergency / Send SOS. If life is at risk, also call 112 directly — reports reach the project command centre, not official emergency services.", to: "/report" },
   { k: /stock|supply|dispatch|food|water/i, a: "Resources & Dispatch tracks stock levels and deliveries. Items below minimum are flagged.", to: "/resources" },
   { k: /risk|depth|population/i, a: "The Population & Risk Grid shows each area's risk score and the factors behind it.", to: "/risk" },
 ];
